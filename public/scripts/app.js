@@ -21,7 +21,7 @@ angular.module('app',[])
 		console.log(data)
 	});*/
 	$scope.click = function(data) {
-		$http.post('/game/'+$scope.id+'/update',{"pi":data}).success(function(rep){$scope.output=data.flag;$scope.score=data.score});
+		$http.get('/game/'+$scope.id+'/update/'+data).success(function(rep){$scope.output=rep.flag;$scope.score=rep.score});
 		
 	};
 })

@@ -41,15 +41,15 @@ app.get('/join/:name/:id', function (req, res){
 
 })
 
-app.post('/game/:id/update', function (req, res){
+app.get('/game/:id/update/:pi', function (req, res){
     // receive update
-    var data = req.pi;
     var id = req.params.id
+    var data = req.params.pi
     console.log(data);
     if(data==3){
         return res.json({'flag':"out", 'score':games[id].score})
     }
-    games[id].score+=data
+    games[id].score+=Number(data);
     return res.json({'flag':"notout", 'score':games[id].score})
 })
 
