@@ -47,10 +47,10 @@ app.get('/game/:id/update/:pi', function (req, res){
     var data = req.params.pi
     console.log(data);
     if(data==3){
-        return res.json({'flag':"out", 'score':games[id].score})
+        return res.json({'flag':"OUT", 'score':games[id].score})
     }
     games[id].score+=Number(data);
-    return res.json({'flag':"notout", 'score':games[id].score})
+    return res.json({'flag':"NOT OUT", 'score':games[id].score})
 })
 
 var server = require('http').createServer(app).listen(process.env.PORT || 9000);
