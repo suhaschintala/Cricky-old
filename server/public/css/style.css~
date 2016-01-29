@@ -1,0 +1,13 @@
+.heading {
+	text-align: center;
+	color: red;
+}
+
+.output {
+	text-align: center;
+}
+
+.ip {
+	margin: 20px 100px 30px 10px;
+	text-align: center;
+}
