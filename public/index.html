@@ -8,17 +8,26 @@
 
 <body ng-controller="myCtrl">
 	<h1 class="heading"> Cricky </h1>
-	<br><br><br>
-	<h2 class="output">{{output}}</h2>
+	<br><br>
+	<div class="reg" ng-hide="isReg"> 
+		<input type="text" ng-model="name"/>
+		<button ng-click="reg()"> Register Me! </button>
+	</div>
 	<br>
-	<br>
-	<div>
-		<button class="ip" style="margin-left:100px;" ng-click="click(1)">1</button>
-		<button class="ip" ng-click="click(2)">2</button>
-		<button class="ip" ng-click="click(3)">3</button>
-		<button class="ip" ng-click="click(4)">4</button>
-		<button class="ip" ng-click="click(5)">5</button>
-		<button class="ip" ng-click="click(6)">6</button>
+	<div ng-show="isReg">
+		<h2 class="output">{{output}}</h2>
+		<br>
+		<br>
+		<div >
+			<button class="ip" style="margin-left:100px;" ng-click="click(1)">1</button>
+			<button class="ip" ng-click="click(2)">2</button>
+			<button class="ip" ng-click="click(3)">3</button>
+			<button class="ip" ng-click="click(4)">4</button>
+			<button class="ip" ng-click="click(5)">5</button>
+			<button class="ip" ng-click="click(6)">6</button>
+		</div>
+		
+		<h3 class="heading">{{score}}</h2>
 	</div>
 </body>
 	<script src="scripts/app.js"></script>
