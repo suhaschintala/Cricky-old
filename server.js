@@ -46,7 +46,8 @@ app.get('/game/:id/update/:pi', function (req, res){
     var id = req.params.id
     var data = req.params.pi
     console.log(data);
-    if(data==3){
+    var random_num = Math.floor((Math.random()*6) + 1);
+    if(data==random_num){
         return res.json({'flag':"OUT", 'score':games[id].score})
     }
     games[id].score+=Number(data);
