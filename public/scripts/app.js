@@ -1,19 +1,27 @@
 angular.module('app',[])
 .controller('myCtrl',function($scope, $http){
 	$scope.isReg = false;
+	$scope.id = 0;
+	$scope.gid = 0;
 	$scope.reg = function() {
-	/*	$http.post('url',{"name":$scope.name}).success(function(data) {
+		$http.post('/register',{"name":$scope.name}).success(function(data) {
 			$scope.isReg = true;
-			console.log(data); //return id 	
-		});*/
-		$scope.isReg=true;	
+			$scope.id = data.id; //return id 	
+			$http.get('/create').success(function(data){
+				$scope.gid = data.number;
+				$http.get('/join/'+$scope.name+'/'+$scope.gid).success(function(data){
+					$scope.score = data.game.score;
+				});
+			});
+		});
 	};
-	$http.get('url')
+	
+	/*$http.get('url')
 	.success(function(data){
 		console.log(data)
-	});
+	});*/
 	$scope.click = function(data) {
-		$http.post('url',{"pi":data}).success(function(rep){$scope.output=data.flag;$scope.score=data.score});
+		$http.post('/game/'+$scope.id+'/update',{"pi":data}).success(function(rep){$scope.output=data.flag;$scope.score=data.score});
 		
 	};
 })

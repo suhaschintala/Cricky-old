@@ -10,9 +10,9 @@ app.use(express.static(path.join(__dirname,'public')));
 
 
 app.post('/register', function (req,res){
-    var user = req.data.name;
+    var user = req.name;
     users.push({'name':user});
-    return res.json({'name':user})
+    return res.json({'id':users.length-1})
     // to register a guy to the game
 })
 app.get('/',function (req, res){
@@ -23,34 +23,34 @@ app.get('/',function (req, res){
 
 app.get('/games', function (req, res){
     // return running games
-    return res.json(game);
+    return res.json(games);
 })
 
 app.get('/create', function (req, res){
     // create a game room
-    game.push({})
-    return res.json({'number':game.length-1})
+    games.push({})
+    return res.json({'number':games.length-1})
 })
 
 app.get('/join/:name/:id', function (req, res){
     var id = req.params.id
     var name = req.params.name
-    game[id].player = name;
-    game[id].score = 0;
-    return res.json({'game' : game[id]})
+    games[id].player = name;
+    games[id].score = 0;
+    return res.json({'game' : games[id]})
 
 })
 
 app.post('/game/:id/update', function (req, res){
     // receive update
-    var data = req.data.pi;
+    var data = req.pi;
     var id = req.params.id
     console.log(data);
     if(data==3){
-        return res.json({'flag':"out", 'score':game[id].score})
+        return res.json({'flag':"out", 'score':games[id].score})
     }
-    game[id].score+=data
-    return res.json({'flag':"notout", 'score':game[id].score})
+    games[id].score+=data
+    return res.json({'flag':"notout", 'score':games[id].score})
 })
 
 var server = require('http').createServer(app).listen(process.env.PORT || 9000);
