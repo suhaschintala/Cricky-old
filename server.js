@@ -54,4 +54,10 @@ app.get('/game/:id/update/:pi', function (req, res){
     return res.json({'flag':"NOT OUT", 'score':games[id].score})
 })
 
+app.get('/reset/:id',function(req,res){
+	var id = req.params.id;
+	games[id].score = 0;
+	console.log('reset');
+	return res.json({'flag':false,'score':games[id].score})
+})
 var server = require('http').createServer(app).listen(process.env.PORT || 9000);

@@ -1,6 +1,7 @@
 angular.module('app',[])
 .controller('myCtrl',function($scope, $http){
 	$scope.isReg = false;
+	$scope.isOut = false;
 	$scope.id = 0;
 	$scope.gid = 0;
 	$scope.reg = function() {
@@ -21,7 +22,18 @@ angular.module('app',[])
 		console.log(data)
 	});*/
 	$scope.click = function(data) {
-		$http.get('/game/'+$scope.id+'/update/'+data).success(function(rep){$scope.output=rep.flag;$scope.score=rep.score});
-		
+		$http.get('/game/'+$scope.id+'/update/'+data).success(function(rep){
+		$scope.output=rep.flag;
+		$scope.score=rep.score;
+		if(rep.flag=='OUT')
+			$scope.isOut = true;
+		});
+	};
+	$scope.continue = function() {
+		$http.get('/reset/'+$scope.id).success(function(rep){
+		$scope.isOut= rep.flag;
+		$scope.score = rep.score;
+		$scope.output="";
+		});
 	};
 })
