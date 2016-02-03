@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html ng-app='app'>
-<head>
-	<title>Cricky</title>
-	<link href="css/style.css" type="text/css" rel="stylesheet"/>
-	<script src="scripts/angular.min.js" type="text/javascript"></script>
-</head>
+	<head>
+		<title>Cricky</title>
+		<link href="css/style.css" type="text/css" rel="stylesheet"/>
+		<script src="scripts/angular.min.js" type="text/javascript"></script>
+	</head>
 
 <body ng-controller="myCtrl">
 
@@ -12,47 +12,60 @@
 		<h1 class="heading"> Cricky </h1>
 	</div>
 	
-	<br><br>
-	<div class="heading" ng-hide="isReg"> 
-		<input type="text" ng-model="name"/>
+		<br><br>
+	<div class="headingc" ng-hide="isReg"> 
+		NAME: <input type="text" ng-model="name"/>
+		<br><br>
+		<input type="checkbox" ng-model="join_existing_game"> JOIN AN EXISTING GAME <br>
+		<br><br>
+		<input type="checkbox" ng-model="host_game"> HOST A GAME <br>
+		<br>
+		<h4> Note by not selecting any you shall be allowed to play a single player game </h4>
 		<button ng-click="reg()"> Register Me! </button>
 	</div>
-	<br>
+		<br>
 	<div ng-show="isReg">
-		<div ng-hide="isOut">
-			<br><br><br>
-			<div class="scoreWidget">
-			<!-- <h2 class="totalScore">player - {{output}}/{{wickets}}</h2> -->
+		<div ng-show="toss">
+			<div class="headingc">
+				<button class="ip btn-circle btn-xlc" ng-click="toss()">TOSS</button>
+				<div ng-show="toss_success">
+					<h2>You choose ?</h2>
+					<br><br>
+					<input type="checkbox" ng-model="batting"> BATTING <br>
+					<br>
+					<input type="checkbox" ng-model="bowling"> BOWLING <br>
+					<br>
+					<button ng-click="choice()"> DONE! </button>
+				</div>
 			</div>
+		</div>
+		<div ng-hide="toss">
+			<div ng-hide="isOut">
+					<br><br><br>
+				<div class="heading">
+					<h2 class="totalScore">{{output}}</h2>
+					<h2 class="totalScore">score - {{score}}</h2>	
+				</div>
 
-			<div class="heading">
-				<h2 class="totalScore">{{output}}</h2>
-				<h2 class="totalScore">score - {{score}}</h2>	
-
-		<!-- <h2 class="wickets">{{output}}</h2>		 -->
-		<!-- for player in players -->
+				<br><br>
+				<div class="hitScore">
+					<button class="ip btn-circle btn-xl" ng-click="click(1)">1</button>
+					<button class="ip btn-circle btn-xl" ng-click="click(2)">2</button>
+					<button class="ip btn-circle btn-xl" ng-click="click(3)">3</button>
+					<br>
+					<button class="ip btn-circle btn-xl" ng-click="click(4)">4</button>
+					<button class="ip btn-circle btn-xl" ng-click="click(5)">5</button>
+					<button class="ip btn-circle btn-xl" ng-click="click(6)">6</button>	
+				</div>
 			</div>
-
-			<br><br>
-
-			<div class="hitScore">
-				<button class="ip btn-circle btn-xl" ng-click="click(1)">1</button>
-				<button class="ip btn-circle btn-xl" ng-click="click(2)">2</button>
-				<button class="ip btn-circle btn-xl" ng-click="click(3)">3</button>
-				<br>
-				<button class="ip btn-circle btn-xl" ng-click="click(4)">4</button>
-				<button class="ip btn-circle btn-xl" ng-click="click(5)">5</button>
-				<button class="ip btn-circle btn-xl" ng-click="click(6)">6</button>	
+			<div ng-show="isOut" class="heading">
+				<h2 class="totalScore"> OUT!! </h2>
+				<h2 class="totalScore"> SCORE - {{score}}</h2>
+				<br><br><br>
+				<button ng-click="continue()">CONTINUE</button>
 			</div>
 		</div>
 	</div>
-		<div ng-show="isOut" class="heading">
-			<h2 class="totalScore"> OUT!! </h2>
-			<h2 class="totalScore"> SCORE - {{score}}</h2>
-			<br><br><br>
-			<button ng-click="continue()">CONTINUE</button>
-		</div>
-
 </body>
-	<script src="scripts/app.js"></script>
+<script src="scripts/app.js"></script>
 </html>	

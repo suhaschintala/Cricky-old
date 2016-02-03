@@ -9,8 +9,12 @@ var games = []
 app.use(express.static(path.join(__dirname,'public')));
 
 
-app.post('/register', function (req,res){
+app.post('/register/:join_mode/:create_mode', function (req,res){
     var user = req.name;
+    var join_mode = req.params.join_mode;
+    var create_mode = req.params.create_mode;
+    console.log("join_mode : "+join_mode)
+    console.log("create_mode : "+create_mode)
     users.push({'name':user});
     return res.json({'id':users.length-1})
     // to register a guy to the game

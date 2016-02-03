@@ -4,8 +4,9 @@ angular.module('app',[])
 	$scope.isOut = false;
 	$scope.id = 0;
 	$scope.gid = 0;
+	$scope.toss= false;
 	$scope.reg = function() {
-		$http.post('/register',{"name":$scope.name}).success(function(data) {
+		$http.post('/register/'+$scope.join_existing_game+'/'+$scope.host_game,{"name":$scope.name}).success(function(data) {
 			$scope.isReg = true;
 			$scope.id = data.id; //return id 	
 			$http.get('/create').success(function(data){
@@ -35,5 +36,11 @@ angular.module('app',[])
 		$scope.score = rep.score;
 		$scope.output="";
 		});
+	};
+	$scope.choice = function() {
+
+	};
+	$scope.toss = function() {
+
 	};
 })
